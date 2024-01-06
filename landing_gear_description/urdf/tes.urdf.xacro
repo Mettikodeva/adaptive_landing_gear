@@ -40,6 +40,38 @@
         </inertial>
 </link>
 
+
+<!-- leg 2 -->
+<link name="leg_2">
+    <visual>
+        <origin rpy="0 0 0" xyz="0 -0.136 -0.017" />
+        <geometry>
+            <mesh filename="package://landing_gear_description/meshes/link1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </visual>
+    <collision>
+        <origin rpy="0 0 0" xyz="0 -0.136 -0.017" />
+        <geometry>
+            <mesh filename="package://landing_gear_description/meshes/link1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+    </collision>
+    <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <mass value="0.1"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+</link>
+
+
+<joint name="base_leg_2_joint" type="revolute">
+    <parent link="base"/>
+    <child link="leg_2"/>
+    <!-- the link 1 rotated  ni x rad-->
+    <origin xyz="-0.0856 -0.0058 0.04" rpy="-1.5714 -1.0475 0"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="100" velocity="1" lower="-1.5714" upper="1.5714"/>
+</joint>
+
 <gazebo reference="base" >
     <material> Gazebo/Blue </material>
     <kinematic> true </kinematic>
