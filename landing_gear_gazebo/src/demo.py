@@ -25,14 +25,25 @@ def update_joint_link2(data:JointState):
 
 if __name__ == "__main__":
     rospy.init_node("demo_landing_gear")
+    rospy.sleep(1)
     sub = rospy.Subscriber("/landing_gear/joint_states", JointState, update_joint_link2)
     start = rospy.Time().now().secs
-    r = rospy.Rate(0.5)
+    r = rospy.Rate(60)
     rospy.loginfo("mulai")
-    while rospy.Time().now().secs - start < 30:
-        pub_leg1.publish(Float64(-randint(0,31415)/10000))
-        pub_leg2.publish(Float64(-randint(0,31415)/10000))
-        pub_leg3.publish(Float64(-randint(0,31415)/10000))
+    flag = True
+    angle = 0 
+    while rospy.Time().now().secs - start < 30 and not rospy.is_shutdown():
+        if flag:
+            angle += 1
+        else: 
+            angle -= 1
+        if angle >= 157 or angle <=0:
+            flag = not flag
+        val = Float64(-angle/100)
+        rospy.loginfo(f"flag = {flag} \n rad = {angle}")
+        pub_leg1.publish(val)
+        pub_leg2.publish(val)
+        pub_leg3.publish(val)
         r.sleep()
     rospy.loginfo("end")
     rospy.signal_shutdown("selesai demo")
