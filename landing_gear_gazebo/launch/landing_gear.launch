@@ -5,13 +5,14 @@
   <param name="robot_description" textfile="$(arg model)"/>
 
 
-  <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find landing_gear_gazebo)/worlds/empty.world" />
     <arg name="verbose" value="true"/>
     <arg name="paused" value="false"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="headless" value="false"/>
-  </include> -->
+  </include>
+
   <node name="delete_model" pkg="landing_gear_gazebo" type="delete_model.py"/>
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x 0 -y 1 -z 1 -model lg"/>
 
