@@ -1,0 +1,44 @@
+landing_gear:
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+  base_leg_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: base_leg_joint
+    pid: {p: 1.0, i: 0.1, d: 0.5}
+
+  base_leg_2_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: base_leg_2_joint
+    pid: {p: 1.0, i: 0.1, d: 0.5}
+
+  base_leg_3_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: base_leg_3_joint
+    pid: {p: 1.0, i: 0.1, d: 0.5}
+
+  base_leg_link2_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: base_link2_leg_joint
+    pid: {p: 1.0, i: 0.1, d: 0.5}
+
+  base_leg_2_link2_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: base_link2_leg_2_joint
+    pid: {p: 1.0, i: 0.1, d: 0.5}
+
+  base_leg_3_link2_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: base_link2_leg_3_joint
+    pid: {p: 1.0, i: 0.1, d: 0.5}
+
+  # joint_position_controller:
+  #   type: effort_controllers/JointGroupPositionController
+  #   joints:
+  #    - base_leg_joint
+  #    - base_leg_2_joint
+  #    - base_leg_3_joint
+  #    - base_link2_leg_joint
+  #    - base_link2_leg_2_joint
+  #    - base_link2_leg_3_joint

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="model" default="$(find landing_gear_description)/urdf/tes.urdf.xacro"/>
+
+  <param name="robot_description" textfile="$(arg model)"/>
+
+  <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="verbose" value="true"/>
+    <arg name="paused" value="false"/>
+  </include> -->
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x 0 -y 1 -z 1 -model lg"/>
+
+
+</launch>

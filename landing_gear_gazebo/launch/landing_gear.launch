@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="model" default="$(find landing_gear_description)/urdf/landing_gear.urdf.xacro"/>
+
+  <param name="robot_description" textfile="$(arg model)"/>
+
+  <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="verbose" value="true"/>
+    <arg name="paused" value="false"/>
+  </include> -->
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x 0 -y 1 -z 1 -model lg"/>
+
+
+    <!-- load configuration -->
+  <rosparam command="load" file="$(find landing_gear_gazebo)/config/config.yaml" />
+
+  <!-- spawn controller -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" ns="/landing_gear" 
+  args="base_leg_joint_position_controller base_leg_2_joint_position_controller
+        base_leg_3_joint_position_controller 
+        base_leg_link2_joint_position_controller
+        base_leg_2_link2_joint_position_controller
+        base_leg_3_link2_joint_position_controller
+        joint_state_controller"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" >
+    <!-- <remap from="robot_description" to="different_robot_description" /> -->
+    <remap from="joint_states" to="/landing_gear/joint_states" />
+  </node>
+
+
+</launch>
