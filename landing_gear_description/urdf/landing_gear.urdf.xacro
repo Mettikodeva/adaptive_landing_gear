@@ -226,28 +226,28 @@
 </gazebo>
 
 <gazebo reference="base" >
-    <material> Gazebo/blue </material>
+    <material> Gazebo/Gray </material>
 </gazebo>
 
 <gazebo reference="leg" >
     <material> Gazebo/White </material>
 </gazebo>
 <gazebo reference="leg_2" >
-    <material> Gazebo/White </material>
+    <material> Gazebo/Yellow </material>
 </gazebo>
 <gazebo reference="leg_3" >
-    <material> Gazebo/White </material>
+    <material> Gazebo/Blue </material>
 </gazebo>
 
 <gazebo reference="link2_leg" >
-    <material> Gazebo/Yellow </material>
+    <material> Gazebo/White </material>
 </gazebo>
 
 <gazebo reference="link2_leg_2" >
     <material> Gazebo/Yellow </material>
 </gazebo>
 <gazebo reference="link2_leg_3" >
-    <material> Gazebo/Yellow </material>
+    <material> Gazebo/Blue </material>
 </gazebo>
 
 
