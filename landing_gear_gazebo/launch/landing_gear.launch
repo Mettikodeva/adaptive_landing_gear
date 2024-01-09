@@ -22,12 +22,17 @@
 
   <!-- spawn controller -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" ns="/landing_gear" 
-        args="base_leg_joint_position_controller base_leg_2_joint_position_controller
+        args="base_leg_1_joint_position_controller base_leg_2_joint_position_controller
               base_leg_3_joint_position_controller 
-              base_leg_link2_joint_position_controller
+              base_leg_1_link2_joint_position_controller
               base_leg_2_link2_joint_position_controller
               base_leg_3_link2_joint_position_controller
-              joint_state_controller"/>
+              joint_state_controller
+              "/>
+
+  <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui">
+    <!-- <rosparam param="source_list">["/landing_gear/joint_states"]</rosparam> -->
+  </node>
 
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" >
     <!-- <remap from="robot_description" to="different_robot_description" /> -->

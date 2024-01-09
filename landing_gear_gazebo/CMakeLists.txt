@@ -166,6 +166,7 @@ catkin_install_python(PROGRAMS
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
     src/demo.py
     scripts/delete_model.py
+    scripts/joint_forwarder.py
 )
 
 ## Mark executables for installation
