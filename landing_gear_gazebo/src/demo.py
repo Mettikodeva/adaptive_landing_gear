@@ -7,8 +7,8 @@ from random import randint
 
 
 def update_joint_link2(data:JointState):
-    rospy.loginfo(f"{data.name}")
-    print("callback")
+    # rospy.loginfo(f"{data.name}")
+    # print("callback")
     pos = data.position
     l1 = Float64(pos[2])
     l2 = Float64(pos[0])
@@ -38,13 +38,15 @@ if __name__ == "__main__":
             angle += 1
         else: 
             angle -= 1
-        if angle >= 157 or angle <=0:
+        if angle >= 120 or angle <=0:
             flag = not flag
         val = Float64(-angle/100)
+        rospy.loginfo_throttle(0.3,f"val:{angle}")
         # rospy.loginfo(f"flag = {flag} \n rad = {angle}")
         pub_leg1.publish(val)
         pub_leg2.publish(val)
         pub_leg3.publish(val)
+
         r.sleep()
     rospy.loginfo("end")
     rospy.signal_shutdown("selesai demo")
