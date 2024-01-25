@@ -39,6 +39,8 @@
         </inertial>
 </link>
 
+
+<!-- x y z R P Y are base to link1 pose -->
 <xacro:leg postfix="1" x="0" y="-0.0058" z="-0.105" R="-1.5714" P="3.1415" Y="0"/>
 <xacro:leg postfix="2" x="0.0856" y="-0.0058" z="0.04" R="-1.5714" P="1.0475" Y="0"/>
 <xacro:leg postfix="3" x="-0.083" y="-0.0058" z="0.04" R="-1.5714" P="-1.0475" Y="0"/>
