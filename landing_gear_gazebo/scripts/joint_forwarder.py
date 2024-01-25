@@ -15,12 +15,13 @@ def joint_callback(data:JointState):
         # 5 = 4
         # 6 = 6
 
-    controller_publishers[0].publish(data.position[0])
-    controller_publishers[1].publish(data.position[2])
+    controller_publishers[0].publish(data.position[0]) #leg 1
+    controller_publishers[1].publish(data.position[2]) #leg 2
     controller_publishers[2].publish(data.position[4])
-    controller_publishers[3].publish(data.position[1])
-    controller_publishers[4].publish(data.position[3])
-    controller_publishers[5].publish(data.position[5])
+
+    controller_publishers[3].publish(data.position[0])
+    controller_publishers[4].publish(data.position[2])
+    controller_publishers[5].publish(data.position[4])
 
     # for i,j in enumerate(controller_publishers):
     #     j.publish(data.position[i])
