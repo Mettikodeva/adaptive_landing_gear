@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="model" default="$(find landing_gear_description)/urdf/landing_gear.urdf.xacro"/>
 
-  <param name="robot_description" textfile="$(arg model)"/>
+  <arg name="joint_state_publisher" default="false"/>
+  <arg name="rviz" default="false"/>
 
+  <param name="robot_description" command="xacro '$(find landing_gear_description)/urdf/tes.urdf.xacro'"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find landing_gear_gazebo)/worlds/empty.world" />
@@ -29,15 +30,18 @@
               base_leg_3_link2_joint_position_controller
               joint_state_controller
               "/>
-
+<group if="$(arg joint_state_publisher)">
   <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui">
-    <!-- <rosparam param="source_list">["/landing_gear/joint_states"]</rosparam> -->
   </node>
+</group>
+  
 
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" >
     <!-- <remap from="robot_description" to="different_robot_description" /> -->
     <remap from="joint_states" to="/landing_gear/joint_states" />
   </node>
-
-
+  <group if="$(arg rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find landing_gear_description)/rviz/landing_gear.rviz" required="true" />
+  </group>
+  <node name="joint_forwarder" pkg="landing_gear_gazebo" type="joint_forwarder.py" output="screen"/>
 </launch>
