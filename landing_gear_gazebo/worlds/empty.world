@@ -37,10 +37,12 @@
       </ode>
     </physics> -->
 
-    <gui>
-        <camera name="user_camera">
-            <pose>0.6 0.54 1.22 0 0.3 2.5420</pose>
-        </camera>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>0.856985 0.447169 0.364804 0 0.3 2.542</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
     </gui>
 </world>
 </sdf>
