@@ -167,6 +167,8 @@ catkin_install_python(PROGRAMS
     src/demo.py
     scripts/delete_model.py
     scripts/joint_forwarder.py
+    scripts/joint_forwarder2.py
+    scripts/get_lidar.py
 )
 
 ## Mark executables for installation

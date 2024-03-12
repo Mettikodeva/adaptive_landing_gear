@@ -4,12 +4,28 @@
 
   <param name="robot_description" textfile="$(arg model)"/>
 
-  <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="verbose" value="true"/>
     <arg name="paused" value="false"/>
-  </include> -->
-  <node name="delete_model" pkg="landing_gear_gazebo" type="delete_model.py"/>
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x 0 -y 1 -z 1 -model lg"/>
+  </include>
 
+  <!-- <node name="delete_model" pkg="landing_gear_gazebo" type="delete_model.py"/> -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x 0.1 -y 0.1 -z 1 -model lg"/>
+
+  <!-- load configuration -->
+  <!-- <rosparam command="load" file="$(find landing_gear_gazebo)/config/tes_config.yaml" /> -->
+
+  <!-- spawn controller
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" ns="/landing_gear" 
+        args="ground_link_controller
+              joint_state_controller"/> -->
+
+  <!-- <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" >
+    <remap from="/joint_states" to="/landing_gear/joint_states" />
+  </node> -->
+
+  <!-- <node pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui">
+  </node>
+  <node pkg="landing_gear_gazebo" type="joint_forwarder2.py" name="joint_forwarder"/> -->
 
 </launch>
