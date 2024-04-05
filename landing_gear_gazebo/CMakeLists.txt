@@ -135,7 +135,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/landing_gear_gazebo_node.cpp)
+add_executable(joint_forwarder scripts/joint_forwarder.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -148,9 +148,9 @@ include_directories(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+target_link_libraries(joint_forwarder
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
@@ -168,7 +168,7 @@ catkin_install_python(PROGRAMS
     scripts/delete_model.py
     scripts/joint_forwarder.py
     scripts/joint_forwarder2.py
-    scripts/get_lidar.py
+    # scripts/get_lidar.py
 )
 
 ## Mark executables for installation
