@@ -6,16 +6,16 @@ from random import randint
 
 
 
-def update_joint_link2(data:JointState):
-    # rospy.loginfo(f"{data.name}")
-    # print("callback")
-    pos = data.position
-    l1 = Float64(pos[2])
-    l2 = Float64(pos[0])
-    l3 = Float64(pos[1])
-    pub_link2_leg1.publish(l1)
-    pub_link2_leg2.publish(l2)
-    pub_link2_leg3.publish(l3)
+# def update_joint_link2(data:JointState):
+#     # rospy.loginfo(f"{data.name}")
+#     # print("callback")
+#     pos = data.position
+#     l1 = Float64(pos[2])
+#     l2 = Float64(pos[0])
+#     l3 = Float64(pos[1])
+#     pub_link2_leg1.publish(l1)
+#     pub_link2_leg2.publish(l2)
+#     pub_link2_leg3.publish(l3)
 
 
 if __name__ == "__main__":
@@ -23,10 +23,10 @@ if __name__ == "__main__":
     pub_leg1 = rospy.Publisher("/landing_gear/base_leg_1_joint_position_controller/command", Float64, queue_size=10)
     pub_leg2 = rospy.Publisher("/landing_gear/base_leg_2_joint_position_controller/command", Float64, queue_size=10)
     pub_leg3 = rospy.Publisher("/landing_gear/base_leg_3_joint_position_controller/command", Float64, queue_size=10)
-    pub_link2_leg1 = rospy.Publisher("/landing_gear/base_leg_1_link2_joint_position_controller/command", Float64, queue_size=10)
-    pub_link2_leg2 = rospy.Publisher("/landing_gear/base_leg_2_link2_joint_position_controller/command", Float64, queue_size=10)
-    pub_link2_leg3 = rospy.Publisher("/landing_gear/base_leg_3_link2_joint_position_controller/command", Float64, queue_size=10)
-    sub = rospy.Subscriber("/landing_gear/joint_states", JointState, update_joint_link2)
+    # pub_link2_leg1 = rospy.Publisher("/landing_gear/base_leg_1_link2_joint_position_controller/command", Float64, queue_size=10)
+    # pub_link2_leg2 = rospy.Publisher("/landing_gear/base_leg_2_link2_joint_position_controller/command", Float64, queue_size=10)
+    # pub_link2_leg3 = rospy.Publisher("/landing_gear/base_leg_3_link2_joint_position_controller/command", Float64, queue_size=10)
+    # sub = rospy.Subscriber("/landing_gear/joint_states", JointState, update_joint_link2)
     r = rospy.Rate(30)
     rospy.sleep(1)
     start = rospy.Time().now().secs
@@ -35,9 +35,9 @@ if __name__ == "__main__":
     angle = 0 
     while rospy.Time().now().secs - start < 30 and not rospy.is_shutdown():
         if flag:
-            angle += 1
+            angle += 10
         else: 
-            angle -= 1
+            angle -= 10
         if angle >= 120 or angle <=0:
             flag = not flag
         val = Float64(-angle/100)
