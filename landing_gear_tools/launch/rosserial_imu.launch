@@ -1,5 +1,5 @@
 <launch>
-  <node pkg="rosserial_python" type="serial_node.py" name="rosserial_server" args="_port:=/dev/ttyUSB0 _baud:=115200" output="screen">
+  <node pkg="rosserial_server" type="socket_node" name="rosserial_server" output="screen">
   </node>
   
   <include file="$(find mpu_6050_driver)/launch/imu_demo.launch"/>
