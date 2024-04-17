@@ -4,18 +4,35 @@
   <arg name="gui" default="true" />
   
   <param name="robot_description" command="xacro $(find mpu_6050_driver)/urdf/plane.urdf.xacro" />
+  <param name="robot_description2" command="xacro $(find mpu_6050_driver)/urdf/plane2.urdf.xacro" />
+
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
   </node>
   
   <node name="imu_filter_node_for_orientation" pkg="imu_complementary_filter" type="complementary_filter_node" >
   <rosparam>
-    gain_acc: 0.05
+    gain_acc: 0.1
   </rosparam>
+
   </node>
-  
   <node name="rpy_tf" pkg="mpu_6050_driver" type="tf_broadcaster_imu.py" >
   </node>
   
+  <node name="imu_filter_node" pkg="imu_filter_madgwick" type="imu_filter_node" output="screen">
+    <rosparam>
+      gain: 0.1
+      zeta: 0.1
+      use_magnetic_field_msg: false
+      use_mag: false
+      fixed_frame: "plane2"
+
+    </rosparam>
+    
+    <remap from="imu/data" to="imu/data2"/>
+  </node>
   
+
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mpu_6050_driver)/config/rviz_config.rviz"/> 
+  <node name="rviz2" pkg="rviz" type="rviz" args="-d $(find mpu_6050_driver)/config/rviz_config2.rviz"/> 
+
 </launch>

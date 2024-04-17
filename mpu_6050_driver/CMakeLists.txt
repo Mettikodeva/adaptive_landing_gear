@@ -1,9 +1,10 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.2)
 project(mpu_6050_driver)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
+find_package(Python3) 
 find_package(catkin REQUIRED COMPONENTS rospy sensor_msgs)
 
 ## System dependencies are found with CMake's conventions
